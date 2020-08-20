@@ -1,6 +1,6 @@
 package home.rav;
 
-import io.qameta.allure.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.empty;
@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.not;
 public class GoogleSearchTest extends TestBase {
 
     @Test
-    @Description("Поиск в Google")
+    @DisplayName("Поиск в Google")
     void test1() throws InterruptedException {
 
         /** не работает
