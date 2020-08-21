@@ -2,12 +2,19 @@ package home.rav;
 
 import home.rav.listener.AtlasAllureListener;
 import home.rav.steps.GoogleSteps;
+import io.qameta.allure.Allure;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.File;
+import java.io.IOException;
 
 public class TestBase {
 
@@ -25,7 +32,9 @@ public class TestBase {
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws IOException {
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        Allure.addAttachment("Screenshot", FileUtils.openInputStream(screenshot));
         driver.quit();
     }
 

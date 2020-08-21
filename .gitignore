@@ -1,5 +1,5 @@
 .allure
-/allure-results
+allure-results/
 .idea
 *.iml
-/target
+target/
