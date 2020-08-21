@@ -12,6 +12,8 @@
         <io.qameta.atlas.version>1.7.0</io.qameta.atlas.version>
         <org.seleniumhq.selenium.version>3.141.59</org.seleniumhq.selenium.version>
         <aspectj.version>1.8.10</aspectj.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
@@ -76,7 +78,6 @@
             <artifactId>commons-io</artifactId>
             <version>2.7</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -84,6 +85,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>

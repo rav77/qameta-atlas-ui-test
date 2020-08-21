@@ -1,5 +1,6 @@
 package home.rav.listener;
 
+import home.rav.DriverFactory;
 import io.qameta.allure.Allure;
 import io.qameta.allure.AllureLifecycle;
 import io.qameta.allure.model.Status;
@@ -10,8 +11,13 @@ import io.qameta.atlas.core.api.Target;
 import io.qameta.atlas.core.context.TargetContext;
 import io.qameta.atlas.core.internal.Configuration;
 import io.qameta.atlas.core.util.MethodInfo;
+import org.apache.commons.io.FileUtils;
 import org.hamcrest.Matcher;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -77,6 +83,12 @@ public class AtlasAllureListener implements Listener {
                     stepResult.setStatusDetails(ResultsUtils.getStatusDetails(throwable).orElse(null));
                 })
         );
+        File screenshot = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+        try {
+            lifecycle.addAttachment("screenshot", "image/png", ".png", FileUtils.openInputStream(screenshot));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private Optional<MethodFormatter> getMethodFormatter(Method method) {

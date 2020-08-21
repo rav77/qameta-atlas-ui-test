@@ -28,7 +28,6 @@ public class GoogleSearchTest extends TestBase {
                 .results()
                 .waitUntil(not(empty()))
                 .filter(a -> a.getAttribute("href").contains("vtb24"))
-                .waitUntil(not(empty()))
                 .get(0)
                 .click();
         Thread.sleep(2000);
