@@ -1,12 +1,11 @@
 package home.rav;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
-
-import static home.rav.constants.Constants.WEBDRIVER_PATH;
 
 public class DriverFactory {
 
@@ -23,15 +22,15 @@ public class DriverFactory {
 
         switch (browser) {
             case CHROME:
-                System.setProperty("webdriver.chrome.driver", WEBDRIVER_PATH + "chromedriver");
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
             case FIREFOX:
-                System.setProperty("webdriver.gecko.driver", WEBDRIVER_PATH + "geckodriver");
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
             case OPERA:
-                System.setProperty("webdriver.opera.driver", WEBDRIVER_PATH + "operadriver");
+                WebDriverManager.operadriver().setup();
                 driver = new OperaDriver();
                 break;
             default:
